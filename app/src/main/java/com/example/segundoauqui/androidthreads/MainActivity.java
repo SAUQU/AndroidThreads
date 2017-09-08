@@ -1,8 +1,9 @@
 package com.example.segundoauqui.androidthreads;
 
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tvTesting;
     TextView tvT2;
+    TextView tvT3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         tvTesting = (TextView) findViewById(R.id.tvTesting);
+        tvT3 = (TextView) findViewById(R.id.tvT3);
 
         tvT2 = (TextView) findViewById(R.id.tvT2);
     }
@@ -49,12 +52,24 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btnAsyntask:
                 TestAsynctask testAsynctask = new TestAsynctask(tvT2);
                 testAsynctask.execute("Staring");
-
-
                 break;
 
 
+            case R.id.btnThreadHandlerMessage:
 
+                Handler handler = new Handler(new Handler.Callback(){
+
+                    @Override
+                    public boolean handleMessage(Message message) {
+                        tvT3.setText(message.getData().getString("key"));
+                        return false;
+                    }
+                });
+
+
+                TestThreadHandlerMessage testThreadHandlerMessage = new TestThreadHandlerMessage(handler);
+                testThreadHandlerMessage.start();
+                break;
         }
 
 

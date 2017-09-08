@@ -65,4 +65,20 @@
         android:layout_height="wrap_content" />
 
 
+    <Button
+        android:onClick="executeThreads"
+        android:text="New using"
+        android:id="@+id/btnThreadHandlerMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+
+        android:textSize="30dp"
+        android:id="@+id/tvT3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
 </LinearLayout>
